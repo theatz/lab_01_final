@@ -234,9 +234,8 @@ void Student::parse_string(const std::string& str) {
 
 void Student::parse_file(const std::string& path) {
   std::ifstream input_file;
-  std::filesystem::path cwd = std::filesystem::current_path() / path;
   //std::ofstream file(cwd.string());
-  input_file.open(cwd.string() + path);
+  input_file.open(path);
   if (!input_file.is_open())
     throw std::runtime_error("File error");
   std::string string;
