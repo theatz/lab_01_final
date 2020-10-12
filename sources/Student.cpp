@@ -47,11 +47,11 @@ void Student::get_name(const json& j, StudentInfo& st){
 }
 
 void Student::get_debt(const json& j, StudentInfo& st){
-  if (j.is_null())
+  if (j.is_null()) {
     st.debt.push_back(nullptr);
-  else if (j.is_string())
+  } else if (j.is_string()) {
     st.debt.push_back(j.get<std::string>());
-  else if (j.is_array()) {
+  } else if (j.is_array()) {
     for (json::const_iterator it = j.cbegin(); it != j.cend(); ++it)
       st.debt.push_back(it->get<std::string>());
   }
