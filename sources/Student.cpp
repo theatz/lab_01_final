@@ -6,17 +6,21 @@ void Student::printHor(){
   std::string sepV = "|";
   std::string sepH = "-";
   _out += sepV;
-  for (uint32_t i = 0; i < _studentSize[0] + space; i++) 
+  for (uint32_t i = 0; i < _studentSize[0] + space; i++){ 
     _out += sepH;
+  }
   _out += sepV;
-  for (uint32_t i = 0; i < _studentSize[1] + space; i++) 
+  for (uint32_t i = 0; i < _studentSize[1] + space; i++){
     _out += sepH;
+  }
   _out += sepV;
-  for (uint32_t i = 0; i < _studentSize[2] + space; i++) 
+  for (uint32_t i = 0; i < _studentSize[2] + space; i++){
     _out += sepH;
+  }
   _out += sepV;
-  for (uint32_t i = 0; i < _studentSize[3] + space; i++) 
+  for (uint32_t i = 0; i < _studentSize[3] + space; i++){
     _out += sepH;
+  }
   _out += sepV + '\n';
 }
 
@@ -262,23 +266,23 @@ void Student::printTable() {
     _out += " ";
   _out += sepV;
   _out += " group";
-  for (uint32_t i = 0; i < _studentSize[1] - 4; i++) 
+  for (uint32_t i = 0; i < _studentSize[1] - 4; i++){
     _out += " ";
+  }
   _out += sepV;
   _out += " avg";
-  for (uint32_t i = 0;
-       i < _studentSize[2] - 2;
-       i++) _out += " ";
+  for (uint32_t i = 0; i < _studentSize[2] - 2; i++){
+    _out += " ";
+  }
   _out += sepV;
   _out += " debt";
-  for (uint32_t i = 0; i < _studentSize[3] - 3; i++) 
+  for (uint32_t i = 0; i < _studentSize[3] - 3; i++){
     _out += " ";
+  }
   _out = _out + sepV + '\n';
   printHor();
 
-  for (uint32_t i = 0;
-       i < _students.size();
-       i++){
+  for (uint32_t i = 0; i < _students.size(); i++){
     printName(_students[i]);
     printGroup(_students[i]);
     printAvg(_students[i]);
