@@ -155,7 +155,7 @@ void Student::printGroup(const StudentInfo& st) {
 void Student::printAvg(const StudentInfo& st) {
   std::string sepV = "|";
   std::string sepH = "-";
-  uint_32 space = 1;
+  uint32_t space = 1;
   _out += sepV + " ";
   if (st.avg.type() == typeid(std::string))
   {
