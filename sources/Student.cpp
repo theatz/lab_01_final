@@ -8,7 +8,7 @@ void Student::printHor(){
   _out += sepV;
   for (uint32_t i = 0; i < _studentSize[0] + space; i++){ 
     _out += sepH;
-  }
+  }  
   _out += sepV;
   for (uint32_t i = 0; i < _studentSize[1] + space; i++){
     _out += sepH;
@@ -125,8 +125,9 @@ void Student::printName(const StudentInfo& st){
   _out += sepV + " ";
   _out += st.name;
   uint32_t sp = _studentSize[0] - st.name.length() + 1;
-  for (uint32_t i = 0; i < sp; i++) 
+  for (uint32_t i = 0; i < sp; i++){ 
     _out += " ";
+  }
 }
 
 void Student::printGroup(const StudentInfo& st) {
@@ -138,8 +139,9 @@ void Student::printGroup(const StudentInfo& st) {
     _out += std::any_cast<std::string>(st.group);
     uint32_t sp = _studentSize[1];
     sp = sp - std::any_cast<std::string>(st.group).length() + 1;
-    for (uint32_t i = 0; i < sp; i++) 
+    for (uint32_t i = 0; i < sp; i++){ 
       _out += " ";
+    }
   } else if (st.group.type() == typeid(size_t)) {
     std::string group;
     group = std::to_string(std::any_cast<size_t>(st.group));
@@ -153,22 +155,23 @@ void Student::printGroup(const StudentInfo& st) {
 void Student::printAvg(const StudentInfo& st) {
   std::string sepV = "|";
   std::string sepH = "-";
-  uint_32 
+  uint_32 space = 1;
   _out += sepV + " ";
   if (st.avg.type() == typeid(std::string))
   {
     _out += std::any_cast<std::string>(st.avg);
     uint32_t sp = _studentSize[2];
-    sp = sp - std::any_cast<std::string>(st.avg).length() + 1;
+    sp = sp - std::any_cast<std::string>(st.avg).length() + space;
     for (uint32_t i = 0; i < sp; i++) 
       _out += " ";
   } else if (st.avg.type() == typeid(size_t)) {
     std::string avg;
     avg = std::to_string(std::any_cast<size_t>(st.avg));
     _out += avg;
-    uint32_t sp = _studentSize[2] - avg.length() + 1;
-    for (uint32_t i = 0; i < sp; i++)
+    uint32_t sp = _studentSize[2] - avg.length() + space;
+    for (uint32_t i = 0; i < sp; i++){
       _out += " ";
+    }
   } else if (st.avg.type() == typeid(double)) {
     std::ostringstream avg_pr;
 // Set Fixed -Point Notation
@@ -180,7 +183,7 @@ void Student::printAvg(const StudentInfo& st) {
 // Get string from output string stream
     std::string avg = avg_pr.str();
     _out += avg;
-    uint32_t sp = _studentSize[2] - avg.length() + 1;
+    uint32_t sp = _studentSize[2] - avg.length() + space;
     for (uint32_t i = 0; i < sp; i++) 
       _out += " ";
   }
@@ -190,20 +193,23 @@ void Student::printDebt(const StudentInfo& st) {
   std::string sepV = "|";
   std::string sepH = "-";
   _out += sepV + " ";
+  uint32_t nullptrSize = 3;
+  uint32_t stringSize = 1;
+  uint32_t arraySize = 5;
   if (st.debt.size() == 1 && st.debt[0].type() == typeid(nullptr)){
     _out += "null";
-    uint32_t sp = _studentSize[3] - 3;
+    uint32_t sp = _studentSize[3] - nullptrSize;
     for (uint32_t i = 0; i < sp; i++) 
       _out += " ";
   } else if (st.debt.size() == 1 && st.debt[0].type() == typeid(std::string)){
     std::string debt = std::any_cast<std::string>(st.debt[0]);
-    uint32_t sp = _studentSize[3] - debt.length() + 1;
+    uint32_t sp = _studentSize[3] - debt.length() + stringSize;
     _out += debt;
     for (uint32_t i = 0; i < sp; i++) 
       _out += " ";
   } else if (st.debt.size() > 1){
     _out = _out + std::to_string(st.debt.size()) + " items";
-    uint32_t sp = _studentSize[3] - std::to_string(st.debt.size()).length() - 5;
+    uint32_t sp = _studentSize[3] - std::to_string(st.debt.size()).length() - arraySize;
     for (uint32_t i = 0; i < sp; i++) 
       _out += " ";
   }
