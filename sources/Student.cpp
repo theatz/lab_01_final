@@ -185,8 +185,9 @@ void Student::printAvg(const StudentInfo& st) {
     std::string avg = avg_pr.str();
     _out += avg;
     uint32_t sp = _studentSize[2] - avg.length() + space;
-    for (uint32_t i = 0; i < sp; i++) 
+    for (uint32_t i = 0; i < sp; i++){
       _out += " ";
+    }
   }
 }
 
@@ -200,14 +201,16 @@ void Student::printDebt(const StudentInfo& st) {
   if (st.debt.size() == 1 && st.debt[0].type() == typeid(nullptr)){
     _out += "null";
     uint32_t sp = _studentSize[3] - nullptrSize;
-    for (uint32_t i = 0; i < sp; i++) 
+    for (uint32_t i = 0; i < sp; i++){
       _out += " ";
+    }
   } else if (st.debt.size() == 1 && st.debt[0].type() == typeid(std::string)){
     std::string debt = std::any_cast<std::string>(st.debt[0]);
     uint32_t sp = _studentSize[3] - debt.length() + stringSize;
     _out += debt;
-    for (uint32_t i = 0; i < sp; i++) 
+    for (uint32_t i = 0; i < sp; i++){
       _out += " ";
+    }
   } else if (st.debt.size() > 1){
     _out = _out + std::to_string(st.debt.size()) + " items";
     uint32_t sp = _studentSize[3];
