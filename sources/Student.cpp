@@ -6,9 +6,9 @@ void Student::printHor(){
   std::string sepV = "|";
   std::string sepH = "-";
   _out += sepV;
-  for (uint32_t i = 0; i < _studentSize[0] + space; i++){ 
+  for (uint32_t i = 0; i < _studentSize[0] + space; i++){
     _out += sepH;
-  }  
+  }
   _out += sepV;
   for (uint32_t i = 0; i < _studentSize[1] + space; i++){
     _out += sepH;
@@ -125,7 +125,7 @@ void Student::printName(const StudentInfo& st){
   _out += sepV + " ";
   _out += st.name;
   uint32_t sp = _studentSize[0] - st.name.length() + 1;
-  for (uint32_t i = 0; i < sp; i++){ 
+  for (uint32_t i = 0; i < sp; i++){
     _out += " ";
   }
 }
@@ -139,7 +139,7 @@ void Student::printGroup(const StudentInfo& st) {
     _out += std::any_cast<std::string>(st.group);
     uint32_t sp = _studentSize[1];
     sp = sp - std::any_cast<std::string>(st.group).length() + 1;
-    for (uint32_t i = 0; i < sp; i++){ 
+    for (uint32_t i = 0; i < sp; i++){
       _out += " ";
     }
   } else if (st.group.type() == typeid(size_t)) {
@@ -162,8 +162,9 @@ void Student::printAvg(const StudentInfo& st) {
     _out += std::any_cast<std::string>(st.avg);
     uint32_t sp = _studentSize[2];
     sp = sp - std::any_cast<std::string>(st.avg).length() + space;
-    for (uint32_t i = 0; i < sp; i++) 
+    for (uint32_t i = 0; i < sp; i++) {
       _out += " ";
+    }
   } else if (st.avg.type() == typeid(size_t)) {
     std::string avg;
     avg = std::to_string(std::any_cast<size_t>(st.avg));
@@ -209,9 +210,11 @@ void Student::printDebt(const StudentInfo& st) {
       _out += " ";
   } else if (st.debt.size() > 1){
     _out = _out + std::to_string(st.debt.size()) + " items";
-    uint32_t sp = _studentSize[3] - std::to_string(st.debt.size()).length() - arraySize;
-    for (uint32_t i = 0; i < sp; i++) 
+    uint32_t sp = _studentSize[3];
+    sp = sp - std::to_string(st.debt.size()).length() - arraySize;
+    for (uint32_t i = 0; i < sp; i++){
       _out += " ";
+    }
   }
   _out += sepV + '\n';
 }
@@ -266,10 +269,9 @@ void Student::printTable() {
   std::string sepH = "-";
   _out += sepV;
   _out += " name";
-  for (uint32_t i = 0;
-       i < _studentSize[0] - 3;
-       i++) 
+  for (uint32_t i = 0; i < _studentSize[0] - 3; i++){
     _out += " ";
+  }
   _out += sepV;
   _out += " group";
   for (uint32_t i = 0; i < _studentSize[1] - 4; i++){
