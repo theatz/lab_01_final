@@ -9,9 +9,8 @@ void Student::printHor(){
   for (uint32_t i = 0; i < _studentSize[0] + space; i++) 
     _out += sepH;
   _out += sepV;
-  for (uint32_t i = 0;
-       i < _studentSize[1] + space;
-       i++) _out += sepH;
+  for (uint32_t i = 0; i < _studentSize[1] + space; i++) 
+    _out += sepH;
   _out += sepV;
   for (uint32_t i = 0; i < _studentSize[2] + space; i++) 
     _out += sepH;
