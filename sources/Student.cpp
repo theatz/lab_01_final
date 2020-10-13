@@ -2,32 +2,34 @@
 #include "Student.hpp"
 
 void Student::printHor(){
+  uint32_t space = 2;
   std::string sepV = "|";
   std::string sepH = "-";
   _out += sepV;
   for (uint32_t i = 0;
-       i < _studentSize[0] + 2;
+       i < _studentSize[0] + space;
        i++) _out += sepH;
   _out += sepV;
   for (uint32_t i = 0;
-       i < _studentSize[1] + 2;
+       i < _studentSize[1] + space;
        i++) _out += sepH;
   _out += sepV;
   for (uint32_t i = 0;
-       i < _studentSize[2] + 2;
+       i < _studentSize[2] + space;
        i++) _out += sepH;
   _out += sepV;
   for (uint32_t i = 0;
-       i < _studentSize[3] + 2;
+       i < _studentSize[3] + space;
        i++) _out += sepH;
   _out += sepV + '\n';
 }
 
 Student::Student() {
-  _studentSize[0] = 4;
-  _studentSize[1] = 4;
-  _studentSize[2] = 4;
-  _studentSize[3] = 4;
+  uint32_t baseSpace = 4;
+  _studentSize[0] = baseSpace;
+  _studentSize[1] = baseSpace;
+  _studentSize[2] = baseSpace;
+  _studentSize[3] = baseSpace;
   _out = "";
   _students.clear();
 }
@@ -106,13 +108,16 @@ uint32_t Student::getAvgLength(const StudentInfo& st){
 }
 
 uint32_t Student::getDebtLength(const StudentInfo& st){
+  uint32_t nullptrSize = 4;
+  uint32_t nullSize = 0;
+  uint32_t arraySize = 6;
   if (st.debt.size() == 1 && st.debt[0].type() == typeid(std::nullptr_t))
-    return 4;
+    return nullptrSize;
   else if (st.debt.size() == 1 && st.debt[0].type() == typeid(std::string))
     return std::any_cast<std::string>(st.debt[0]).length();
-  else if (st.debt.size() == 0) return 0;
+  else if (st.debt.size() == 0) return nullSize;
   else
-    return std::to_string(st.debt.size()).length() + 6;
+    return std::to_string(st.debt.size()).length() + arraySize;
 }
 void Student::printName(const StudentInfo& st){
   std::string sepV = "|";
@@ -120,9 +125,8 @@ void Student::printName(const StudentInfo& st){
   _out += sepV + " ";
   _out += st.name;
   uint32_t sp = _studentSize[0] - st.name.length() + 1;
-  for (uint32_t i = 0;
-       i < sp;
-       i++) _out += " ";
+  for (uint32_t i = 0; i < sp; i++) 
+    _out += " ";
 }
 
 void Student::printGroup(const StudentInfo& st) {
@@ -134,36 +138,37 @@ void Student::printGroup(const StudentInfo& st) {
     _out += std::any_cast<std::string>(st.group);
     uint32_t sp = _studentSize[1];
     sp = sp - std::any_cast<std::string>(st.group).length() + 1;
-    for (uint32_t i = 0;
-         i < sp;
-         i++) _out += " ";
+    for (uint32_t i = 0; i < sp; i++) 
+      _out += " ";
   } else if (st.group.type() == typeid(size_t)) {
     std::string group;
     group = std::to_string(std::any_cast<size_t>(st.group));
     _out += group;
     uint32_t sp = _studentSize[1] - group.length() + 1;
-    for (uint32_t i = 0; i < sp; i++) _out += " ";
+    for (uint32_t i = 0; i < sp; i++)
+      _out += " ";
   }
 }
 
 void Student::printAvg(const StudentInfo& st) {
   std::string sepV = "|";
   std::string sepH = "-";
+  uint_32 
   _out += sepV + " ";
   if (st.avg.type() == typeid(std::string))
   {
     _out += std::any_cast<std::string>(st.avg);
     uint32_t sp = _studentSize[2];
     sp = sp - std::any_cast<std::string>(st.avg).length() + 1;
-    for (uint32_t i = 0;
-         i < sp;
-         i++) _out += " ";
+    for (uint32_t i = 0; i < sp; i++) 
+      _out += " ";
   } else if (st.avg.type() == typeid(size_t)) {
     std::string avg;
     avg = std::to_string(std::any_cast<size_t>(st.avg));
     _out += avg;
     uint32_t sp = _studentSize[2] - avg.length() + 1;
-    for (uint32_t i = 0; i < sp; i++) _out += " ";
+    for (uint32_t i = 0; i < sp; i++)
+      _out += " ";
   } else if (st.avg.type() == typeid(double)) {
     std::ostringstream avg_pr;
 // Set Fixed -Point Notation
@@ -176,7 +181,8 @@ void Student::printAvg(const StudentInfo& st) {
     std::string avg = avg_pr.str();
     _out += avg;
     uint32_t sp = _studentSize[2] - avg.length() + 1;
-    for (uint32_t i = 0; i < sp; i++) _out += " ";
+    for (uint32_t i = 0; i < sp; i++) 
+      _out += " ";
   }
 }
 
@@ -187,16 +193,19 @@ void Student::printDebt(const StudentInfo& st) {
   if (st.debt.size() == 1 && st.debt[0].type() == typeid(nullptr)){
     _out += "null";
     uint32_t sp = _studentSize[3] - 3;
-    for (uint32_t i = 0; i < sp; i++) _out += " ";
+    for (uint32_t i = 0; i < sp; i++) 
+      _out += " ";
   } else if (st.debt.size() == 1 && st.debt[0].type() == typeid(std::string)){
     std::string debt = std::any_cast<std::string>(st.debt[0]);
     uint32_t sp = _studentSize[3] - debt.length() + 1;
     _out += debt;
-    for (uint32_t i = 0; i < sp; i++) _out += " ";
+    for (uint32_t i = 0; i < sp; i++) 
+      _out += " ";
   } else if (st.debt.size() > 1){
     _out = _out + std::to_string(st.debt.size()) + " items";
     uint32_t sp = _studentSize[3] - std::to_string(st.debt.size()).length() - 5;
-    for (uint32_t i = 0; i < sp; i++) _out += " ";
+    for (uint32_t i = 0; i < sp; i++) 
+      _out += " ";
   }
   _out += sepV + '\n';
 }
@@ -253,12 +262,12 @@ void Student::printTable() {
   _out += " name";
   for (uint32_t i = 0;
        i < _studentSize[0] - 3;
-       i++) _out += " ";
+       i++) 
+    _out += " ";
   _out += sepV;
   _out += " group";
-  for (uint32_t i = 0;
-       i < _studentSize[1] - 4;
-       i++) _out += " ";
+  for (uint32_t i = 0; i < _studentSize[1] - 4; i++) 
+    _out += " ";
   _out += sepV;
   _out += " avg";
   for (uint32_t i = 0;
@@ -266,9 +275,8 @@ void Student::printTable() {
        i++) _out += " ";
   _out += sepV;
   _out += " debt";
-  for (uint32_t i = 0;
-       i < _studentSize[3] - 3;
-       i++) _out += " ";
+  for (uint32_t i = 0; i < _studentSize[3] - 3; i++) 
+    _out += " ";
   _out = _out + sepV + '\n';
   printHor();
 
